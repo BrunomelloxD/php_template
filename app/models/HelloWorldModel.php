@@ -8,10 +8,19 @@ class HelloWorldModel implements HelloWorldRepository
 {
     public function get()
     {
-        $data = [
-            'message' => 'Hello World',
-        ];
+        try {
+            $response = [
+                'message' => 'Hello World',
+            ];
 
-        return $data;
+            $data = [
+                'code' => 200,
+                'response' => $response,
+            ];
+
+            return $data;
+        } catch (\Throwable $th) {
+            throw new \RuntimeException('Error:', 0, $th);
+        }
     }
 }
