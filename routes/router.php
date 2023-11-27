@@ -17,7 +17,7 @@ function load(string $controller, string $action, array $params = [])
             throw new Exception('Method ' . $action . ' not found on controller ' . $controller);
         }
 
-        $controllerInstance->$action($params);
+        $controllerInstance->$action((object) $_REQUEST);
     } catch (Exception $e) {
         http_response_code(500);
         echo $e->getMessage();
